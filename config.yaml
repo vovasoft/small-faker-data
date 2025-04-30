@@ -1,0 +1,143 @@
+tables:
+  业务数据表:
+    columns:
+      数据日期:
+        type: VARCHAR(8)
+        generator: date_series  # 修改生成器类型
+        date_type: "monthly"    # 新增日期类型参数 [daily|monthly]
+        start: "20240101"
+        end: "20250630"
+        format: "%Y%m%d"
+#        type: VARCHAR(8)
+#        generator: date_range
+#        start: "20240101"
+#        end: "20250630"
+#        format: "%Y%m%d"+
+
+      是否调整:
+        type: TINYINT
+        generator: enum
+        values: [0, 1]
+        comment: "0-调整前, 1-调整后"
+
+      地区机构:
+        type: VARCHAR(20)
+        generator: enum
+        values:
+          - "4401"
+          - "4406"
+          - "4419"
+          - "4404"
+          - "4420"
+          - "4407"
+          - "4413"
+          - "4405"
+          - "4408"
+          - "4409"
+
+      四大行名称:
+        type: VARCHAR(50)
+        generator: enum
+        values: ["CCB", "ICBC", "ABC", "BOC"]
+
+      币种:
+        type: VARCHAR(10)
+        generator: enum
+        values: ["CNY", "CNYand"]  # 明确指定币种列表
+
+      余额类型:
+        type: VARCHAR(20)
+        generator: enum
+        values: ["PITB", "DAB"]
+
+      指标名称:
+        type: DECIMAL(16,2)
+        generator: enum
+        values:
+          - "10001"
+          - "10002"
+          - "10003"
+          - "10004"
+          - "10005"
+
+      指标值四行占比:
+        type: DECIMAL(3,2)  # 范围0.00~0.99
+        generator: decimal_percent
+
+      指标值四行排名:
+        type: INT
+        generator: number_range
+        min: 1
+        max: 4
+
+      指标较年初新增值:
+        type: DECIMAL(16,2)
+        generator: number_range
+        min: 1000
+        max: 500000
+
+      较年初新增值四行占比:
+        type: DECIMAL(3,2)  # 范围0.00~1.00
+        generator: decimal_percent
+
+      较年初新增值四行排名:
+        type: INT
+        generator: number_range
+        min: 1
+        max: 4
+
+    records: 200
+
+#  业务数据表2:
+#    columns:
+#      数据日期:
+#        type: VARCHAR(8)
+#        generator: date_series  # 修改生成器类型
+#        date_type: "monthly"    # 新增日期类型参数 [daily|monthly]
+#        start: "20240101"
+#        end: "20250630"
+#        format: "%Y%m%d"
+#
+##        type: VARCHAR(8)
+##        generator: date_range
+##        start: "20240101"
+##        end: "20250630"
+##        format: "%Y%m%d"
+#      地区机构:
+#        type: VARCHAR(20)
+#        generator: enum
+#        values:
+#          - "4401"
+#          - "4406"
+#          - "4419"
+#          - "4404"
+#          - "4420"
+#          - "4407"
+#          - "4413"
+#          - "4405"
+#          - "4408"
+#          - "4409"
+#      四大行名称:
+#        type: VARCHAR(50)
+#        generator: enum
+#        values: [ "CCB", "ICBC", "ABC", "BOC" ]
+#      指标名称:
+#        type: DECIMAL(16,2)
+#        generator: enum
+#        values:
+#          - "10001"
+#          - "10002"
+#          - "10003"
+#          - "10004"
+#          - "10005"
+#      指标值:
+#        type: DECIMAL(16,2)
+#        generator: number_range
+#        min: 1000
+#        max: 5000000
+#
+#      指标值四行排名:
+#        type: INT
+#        generator: number_range
+#        min: 1
+#        max: 4
